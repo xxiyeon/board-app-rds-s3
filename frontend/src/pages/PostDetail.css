@@ -1,0 +1,224 @@
+.post-detail { display: flex; flex-direction: column; gap: 16px; }
+
+.detail-header { padding: 28px 32px; }
+.detail-meta-top { margin-bottom: 10px; }
+.detail-category {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 3px 10px;
+  border-radius: 20px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+.detail-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.4;
+  margin-bottom: 16px;
+}
+.detail-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 13px;
+  color: var(--gray-500);
+  flex-wrap: wrap;
+}
+.meta-author { color: var(--gray-700); font-weight: 500; }
+.meta-divider { color: var(--gray-300); }
+.meta-updated { color: var(--gray-400); font-style: italic; }
+
+.detail-body { padding: 32px; }
+.post-content {
+  font-size: 15px;
+  line-height: 1.85;
+  color: var(--gray-700);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.detail-actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Comments */
+.comments-section { padding: 28px 32px; }
+.comments-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--gray-800);
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 2px solid var(--gray-100);
+}
+.comments-count {
+  color: var(--primary);
+  background: var(--primary-light);
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 13px;
+}
+
+.comment-list { list-style: none; margin-bottom: 24px; }
+.comment-item {
+  padding: 16px 0;
+  border-bottom: 1px solid var(--gray-100);
+}
+.comment-item:last-child { border-bottom: none; }
+.comment-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 8px;
+}
+.comment-author { font-size: 13px; font-weight: 600; color: var(--gray-700); }
+.comment-date { font-size: 12px; color: var(--gray-400); }
+.comment-body { display: flex; justify-content: space-between; align-items: flex-start; gap: 16px; }
+.comment-content { font-size: 14px; color: var(--gray-700); line-height: 1.6; flex: 1; }
+.comment-delete-btn {
+  color: var(--gray-400);
+  background: none;
+  border: 1px solid var(--gray-200);
+  font-size: 12px;
+  padding: 3px 10px;
+  flex-shrink: 0;
+}
+.comment-delete-btn:hover { color: var(--danger); border-color: var(--danger); }
+
+.no-comments {
+  text-align: center;
+  padding: 30px;
+  color: var(--gray-400);
+  font-size: 14px;
+  margin-bottom: 20px;
+}
+
+.comment-form { margin-top: 4px; }
+.comment-input-row { display: flex; gap: 10px; align-items: flex-end; }
+.comment-textarea { flex: 1; min-height: 80px; resize: none; }
+.comment-submit-btn { height: 80px; min-width: 70px; }
+.comment-login-prompt { text-align: center; padding: 20px 0 4px; }
+
+/* 첨부파일 섹션 */
+.meta-attach { color: var(--gray-500); }
+
+.attach-section-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-700);
+  margin-bottom: 12px;
+  padding-top: 20px;
+  border-top: 1px solid var(--gray-100);
+  margin-top: 24px;
+}
+
+/* 이미지 그리드 */
+.image-preview-section { margin-top: 8px; }
+.image-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 10px;
+}
+.image-thumb {
+  position: relative;
+  aspect-ratio: 1;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--gray-200);
+  cursor: pointer;
+}
+.image-thumb img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.2s;
+}
+.image-thumb:hover img { transform: scale(1.05); }
+.image-thumb-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(0,0,0,0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.2s;
+  color: white;
+  font-size: 13px;
+  font-weight: 500;
+}
+.image-thumb:hover .image-thumb-overlay { opacity: 1; }
+
+/* 파일 다운로드 리스트 */
+.file-download-section { margin-top: 8px; }
+.download-list { list-style: none; display: flex; flex-direction: column; gap: 8px; }
+.download-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px 14px;
+  background: var(--gray-50);
+  border: 1px solid var(--gray-200);
+  border-radius: var(--radius);
+}
+.download-icon { font-size: 20px; flex-shrink: 0; }
+.download-info { flex: 1; min-width: 0; }
+.download-name {
+  display: block;
+  font-size: 14px;
+  color: var(--gray-700);
+  font-weight: 500;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.download-size { font-size: 12px; color: var(--gray-400); }
+
+/* 라이트박스 */
+.lightbox {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  z-index: 1000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+}
+.lightbox-inner {
+  position: relative;
+  background: white;
+  border-radius: var(--radius-lg);
+  padding: 20px;
+  max-width: 90vw;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+}
+.lightbox-close {
+  position: absolute;
+  top: 10px;
+  right: 12px;
+  background: none;
+  border: none;
+  font-size: 20px;
+  cursor: pointer;
+  color: var(--gray-500);
+  line-height: 1;
+}
+.lightbox-close:hover { color: var(--gray-800); }
+.lightbox-img {
+  max-width: 100%;
+  max-height: 70vh;
+  object-fit: contain;
+  border-radius: var(--radius);
+}
+.lightbox-name { font-size: 13px; color: var(--gray-500); }
+.lightbox-download { align-self: flex-end; }

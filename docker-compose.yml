@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+
+  # # ===== MySQL =====
+  # db:
+  #   image: mysql:8.0
+  #   container_name: board-db
+  #   restart: always
+  #   environment:
+  #     MYSQL_ROOT_PASSWORD: ${DB_PASSWORD}
+  #     MYSQL_DATABASE: boarddb
+  #     MYSQL_CHARACTER_SET_SERVER: utf8mb4
+  #     MYSQL_COLLATION_SERVER: utf8mb4_unicode_ci
+  #   command:
+  #     - --character-set-server=utf8mb4
+  #     - --collation-server=utf8mb4_unicode_ci
+  #     - --init-connect=SET NAMES utf8mb4
+  #   ports:
+  #     - "3307:3306"
+  #   volumes:
+  #     - mysql-data:/var/lib/mysql
+  #     - ./mysql/init.sql:/docker-entrypoint-initdb.d/init.sql
+  #   networks:
+  #     - board-network
+  #   healthcheck:
+  #     test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-p${DB_PASSWORD}"]
+  #     interval: 10s
+  #     timeout: 5s
+  #     retries: 5
+  #     start_period: 30s
+
+  # ===== Spring Boot Backend =====
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: board-backend
+    restart: always
+    environment:
+      DB_HOST: ${DB_HOST}
+      DB_PORT: ${DB_PORT}
+      DB_NAME: ${DB_NAME}
+      DB_USER: ${DB_USER}
+      DB_PASSWORD: ${DB_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      S3_BUCKET: ${S3_BUCKET}
+      AWS_REGION: ${AWS_REGION}
+      AWS_ACCESS_KEY: ${AWS_ACCESS_KEY}
+      AWS_SECRET_KEY: ${AWS_SECRET_KEY}
+    ports:
+      - "8080:8080"
+    # depends_on:
+    #   db:
+    #     condition: service_healthy
+    networks:
+      - board-network
+
+  # ===== React Frontend (Nginx) =====
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    container_name: board-frontend
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - backend
+    networks:
+      - board-network
+
+# ===== 볼륨 =====
+# volumes:
+#   mysql-data:
+#     name: board-mysql-data
+
+# ===== 네트워크 =====
+networks:
+  board-network:
+    name: board-network
+    driver: bridge
