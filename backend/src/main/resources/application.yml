@@ -1,6 +1,6 @@
 spring:
   datasource:
-    url: jdbc:mysql://database-1.cdcsmics0b6p.ap-northeast-2.rds.amazonaws.com:3306/dbname?useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Seoul
+    url: jdbc:mysql://database-1.cdcsmics0b6p.ap-northeast-2.rds.amazonaws.com
     username: ${DB_USER}
     password: ${DB_PASSWORD}
     driver-class-name: com.mysql.cj.jdbc.Driver
@@ -44,8 +44,8 @@ cloud:
     region:
       static: ${AWS_REGION}
     credentials:
-      access-key: ${AWS_ACCESS_KEY:your-access-key}
-      secret-key: ${AWS_SECRET_KEY:your-secret-key}
+      access-key: ${AWS_ACCESS_KEY}
+      secret-key: ${AWS_SECRET_KEY}
 
 logging:
   level:
